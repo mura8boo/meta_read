@@ -1,0 +1,15 @@
+
+<peoples>
+  <people>
+    <person id="1">
+    <name>Alice</name>
+    <age>28</name>
+    </person>
+  </people>
+  <people>
+    <person id="3">
+    <name>中村アリス</name>
+    <age>23</name>
+    </person>
+  </people>
+</peoples>
