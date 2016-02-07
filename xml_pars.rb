@@ -14,21 +14,26 @@ class XMLParser
     end
   end
 
-  def read_people
-    by_xpath('peoples/people/person')
-  end
-
   private
   def by_xpath(xpath)
-    xdoc.xpath(xpath).each do |person|
-      puts person.get('id')
-      puts person.at_xpath('name').text
+    xdoc.xpath(xpath).each do |node|
+      yield node
+    end
+  end
+end
+
+class People < XMLParser
+  def read_people(xpath)
+    by_xpath(xpath) do |node| 
+      puts node.get('id')
+      puts node.at_xpath('name').text
     end
   end
 end
 
 if __FILE__ == $PROGRAM_NAME
   fname = 'people.xml'
-  xp = XMLParser.open fname
-  xp.read_people
+  p = People.open fname
+  xpath = 'peoples/people/person'
+  p.read_node xpath
 end
